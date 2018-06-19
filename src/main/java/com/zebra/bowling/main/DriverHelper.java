@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +32,8 @@ public class DriverHelper {
 	public String readFile() throws FileNotFoundException, IOException {
 		FileReaderUtil readFile = new FileReaderUtil();
 		ReadPropertiesUtil readProperty = new ReadPropertiesUtil();
-		String filePath = readProperty.getProperties("input.file.path");
+		//String filePath = readProperty.getProperties("input.file.path");
+		String filePath = readProperty.getProperties("input.file.perfect");
 		return readFile.readFromInputFile(filePath);
 
 	}
@@ -51,16 +51,10 @@ public class DriverHelper {
 			}
 			map.get(single[0]).add(single[1]);
 		}
-		
-		
-		System.out.println(map);
-		System.out.println(nameList);
-		
 		calculate(map);
 	}
 	
 	public List<String> pitFalls(List<Integer> list){
-		System.out.println(list);
 		List<Integer> convertedList = convertTo21(list);
 		int[] scores = convertedList.stream().mapToInt(i->i).toArray();
 		List<String> pitFallList = new ArrayList<>();
@@ -107,7 +101,6 @@ public class DriverHelper {
 				intList.add(i+1, 0);
 			}
 		}
-		System.out.println(intList);
 		return intList;
 	}
 
@@ -131,7 +124,7 @@ public class DriverHelper {
 			
 		}
 		
-		System.out.println(finalScoreCard);
+		print(finalScoreCard);
 
 	}
 	
@@ -147,36 +140,29 @@ public class DriverHelper {
 		return newList;
 	}
 	
-	public void print() {
+	public void print(Map<String, Map<String, List<String>>> finalScoreCard) {
 		System.out.print("Frame");
         for (int i=1; i<=10; i++) {
             System.out.print("\t\t" + i);
         }
         System.out.println();
         
-        String[] pinfalls1 = new String[]{"X", "7", "/", "9", "0", "X", "0", "8", "8", "/", "F", "6", "X", "X", "X", "8", "1"};
-        String[] scores1 = new String[]{"20", "39", "48", "66", "74", "84", "90", "120", "148", "167"};
+        for(Map.Entry<String, Map<String, List<String>>> fs: finalScoreCard.entrySet()) {
+        	System.out.println(fs.getKey());
+        	System.out.print("pinfalls ");
+        	fs.getValue().get("pinfall").forEach(System.out::print);
+        	System.out.println();
+        	System.out.print("score ");
+        	fs.getValue().get("score").forEach(i -> System.out.print("\t\t"+i));
+        	System.out.println();
+
+        }
         
-        System.out.println("Jeff");
-        System.out.print("Pinfalls");
-        for (int i=0; i<pinfalls1.length; i++) {
-            if (pinfalls1[i].equals("X")) {
-                System.out.print("\t");
-            }
-            System.out.print("\t" + pinfalls1[i]);
-        }
-        System.out.println();
-        System.out.print("Score\t");
-        for (int i=0; i<scores1.length; i++) {
-            System.out.print("\t\t" + scores1[i]);
-        }
-        System.out.println();
 	}
 	
 		// helper method
 	public void roll(List<Integer> list) {
 		game = new BowlingGameImpl();
-		System.out.println("::::::" + list);
 		int[] rolls = list.stream().mapToInt(i->i).toArray();
 		for (int pinsDown : rolls)
 			game.roll(pinsDown);
@@ -184,7 +170,5 @@ public class DriverHelper {
 
 	public void run() throws FileNotFoundException, IOException {
 		populatePlayer(readFile());
-		
-
 	}
 }
