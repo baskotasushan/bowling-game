@@ -4,40 +4,18 @@ import java.io.IOException;
 
 public class Driver {
 	
-	public static final int LAST_POSITION = 9;
+	
 
 	public static void main(String[] args) throws IOException {
 		DriverHelper helper = new DriverHelper();
 		helper.run();
-		helper.calculateScore();
-	/*	
-		String[] states = new String[10];
-        int[] scores = new int[] {10, 0, 7, 3, 9, 0, 10, 0, 0, 8, 8, 2, 0, 6, 10, 0, 10, 0, 10, 8, 1};
-        for (int i=0; i<10; i++) {
-          if (scores[i*2] == 10) {
-            states[i] = "STR";
-          } else if ((scores[i*2] + scores[i*2+1]) == 10) {
-            states[i] = "SPR";
-          } else {
-            states[i] = "NONE";
-          }
-        }
-        for (int x=0; x<10; x++) {
-        	if (states[x].equals("STR")) {
-        		System.out.print("\t\tX");
-        	} else if (states[x].equals("SPR")) {
-        		System.out.print("\t" + scores[x*2] + "\t/");
-        	} else {
-        		System.out.print("\t" + scores[x*2] + "\t" + scores[x*2+1]);
-        	}
-        }
-        if (states[LAST_POSITION].equals("STR")) {
-        	System.out.println("\t" + scores[LAST_POSITION * 2 + 1] + "\t" + scores[LAST_POSITION * 2 + 2]);
-        } else if (states[LAST_POSITION].equals("SPR")) {
-        	System.out.println("\t" + scores[LAST_POSITION * 2 + 2]);
-        }
+		//helper.calculateScore();
+		//int[] scores = new int[] {10, 0, 7, 3, 9, 0, 10, 0, 0, 8, 8, 2, 0, 6, 10, 0, 10, 0, 10, 8, 1};
+		//System.out.println(helper.pitFalls(scores));
+		
+		
         
-        
+        /*
         // Static Data Print Layout
         System.out.print("Frame");
         for (int i=1; i<=10; i++) {
