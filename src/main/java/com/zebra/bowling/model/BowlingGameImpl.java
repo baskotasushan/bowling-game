@@ -1,5 +1,10 @@
 package com.zebra.bowling.model;
 
+/**
+ * Implementation Class of the BowlingGame interface.
+ * @author Sushan
+ *
+ */
 public class BowlingGameImpl implements BowlingGame {
 
 	int[] rolls;
@@ -9,17 +14,11 @@ public class BowlingGameImpl implements BowlingGame {
 		this.rolls = new int[21];
 	}
 
-	/*
-	 * play a game, i.e throw a ball to the sticks
-	 */
 	@Override
 	public void roll(int pinsDown) {
 		rolls[currentRoll++] = pinsDown;
 	}
 
-	/*
-	 * score acheived in a throw
-	 */
 	@Override
 	public int[] score() {
 		int[] scores = new int[10];
@@ -43,22 +42,47 @@ public class BowlingGameImpl implements BowlingGame {
 		return scores;
 	}
 
+	/**
+	 * check is strike or not
+	 * @param frame
+	 * @return true or false
+	 */
 	private boolean isStrike(int frame) {
 		return rolls[frame] == 10;
 	}
 
+	/**
+	 * check is spare or not
+	 * @param frame
+	 * @return true or false
+	 */
 	private boolean isSpare(int frame) {
 		return sumOfRolls(frame) == 10;
 	}
 
+	/**
+	 * add required bonus to strike
+	 * @param frame
+	 * @return bonus
+	 */
 	private int strikeBonus(int frame) {
 		return sumOfRolls(frame + 1);
 	}
 
+	/**
+	 * add required bonus to spare
+	 * @param frame
+	 * @return bonus
+	 */
 	private int spareBonus(int frame) {
 		return rolls[frame + 2];
 	}
 
+	/**
+	 * sum the score
+	 * @param frame
+	 * @return score sum
+	 */
 	private int sumOfRolls(int frame) {
 		return rolls[frame] + rolls[frame + 1];
 	}

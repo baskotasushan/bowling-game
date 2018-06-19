@@ -1,5 +1,10 @@
 package com.zebra.bowling.model;
 
+/**
+ * This interface calculate the total scores played by the player. 
+ * @author Sushan
+ *
+ */
 public interface BowlingGame {
 
 	/**
@@ -10,7 +15,7 @@ public interface BowlingGame {
 	void roll(int noOfPins);
 
 	/**
-    *
+    * This method calculate the total score based on the user frame score.
     * @return score of current frame only
     */
 	int[] score();
